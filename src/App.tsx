@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { LogoutButton } from './components';
+import { LoginPage } from './pages';
 
 const App = () => {
   const {isAuthenticated, loginWithRedirect, user, isLoading} = useAuth0();
@@ -9,7 +10,7 @@ const App = () => {
   }
   if (!isAuthenticated) {
     loginWithRedirect();
-    return <div>Redirecting to login...</div>
+    return <LoginPage />;
   }
 
   return (
