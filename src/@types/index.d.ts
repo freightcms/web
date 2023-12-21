@@ -4,5 +4,10 @@ export declare global {
         domain: string;
         clientID: string;
       };
+      appConfig: {
+        name: string;
+        logo: string;
+        apiURL: string;
+      };
     }
   }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { LoginPage } from './pages';
 import NavigationBar, { NavigationBarProvider } from './components/Navbar/Navbar';
+import { Outlet } from 'react-router';
 
 const App = () => {
   const {isAuthenticated, loginWithRedirect, isLoading} = useAuth0();
@@ -17,15 +18,12 @@ const App = () => {
 
   return (<>
     <header className="flex flex-row gap-x-2">
-      <div className="flex-grow">
-        <img src="https://gravatar.com/avatar/6186d8f9697ae4b54e92fc3876ab05d98040e3ef4ef4fcc084eef3cf1b7e7dca" alt="Freight CMS Logo" />
-      </div>
       <NavigationBarProvider value={{isExpanded, toggle: () => setIsExpanded(!isExpanded)}}>
         <NavigationBar />
       </NavigationBarProvider>
     </header>
     <main>
-      Content Here
+      <Outlet />
     </main>
     <footer>
       Footer Here
