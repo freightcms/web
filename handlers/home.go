@@ -28,7 +28,7 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles(
 		filepath.Join(dir, "templates", "layout.html"),
 		filepath.Join(dir, "templates", "navigation.html"),
-		filepath.Join(dir, "templates", "home.html"),
+		filepath.Join(dir, "templates", "index.html"),
 		filepath.Join(dir, "templates", "styles.html"),
 	)
 	if err != nil {

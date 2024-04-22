@@ -21,6 +21,9 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		handlers.GetHome(w, r)
 	})
+	http.HandleFunc("/carriers", func(w http.ResponseWriter, r *http.Request) {
+		handlers.Carriers(w, r)
+	})
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
 	}
