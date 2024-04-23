@@ -1,13 +1,19 @@
 {{ define "navigation" }}
 <nav>
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
+    <button>
+        <a href="/">Home</a>
+    </button>
     <div class="dropdown">
         <button class="dropbtn">Carrier Tools & Management</button>
         <div class="dropdown-content">
             <a href="/carriers">Carriers</a>
             <a href="/carriers/new">New</a>
         </div>
+    </div>
+    <div class="justify-end">
+        <button>
+            <a href="/login">Login</a>
+        </button>
     </div>
 </nav>
 {{ end }}
