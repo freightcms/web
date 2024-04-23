@@ -40,10 +40,11 @@ func Carriers(w http.ResponseWriter, r *http.Request) {
 	}
 	// Load the template file
 	t, err := template.ParseFiles(
+		filepath.Join(dir, "templates/layout.html"),
 		filepath.Join(dir, "templates/styles.html"),
 		filepath.Join(dir, "templates/navigation.html"),
-		filepath.Join(dir, "templates/layout.html"),
-		filepath.Join(dir, "templates/carriers", "index.html"))
+		filepath.Join(dir, "templates/carriers", "index.html"),
+		filepath.Join(dir, "templates/carriers", "list.html"))
 	if err != nil {
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
@@ -59,22 +60,32 @@ func Carriers(w http.ResponseWriter, r *http.Request) {
 			PrevLink: "",
 		},
 		TableViewModel: TableViewModel{
-			Headers: []string{
-				"ID",
-				"Name",
-				"DBA",
-				"Identifying Code Count",
-				"Contact Name",
-				"Contact Email",
-				"Contact Phone",
-				"Contact Fax",
-				"Contact Method",
+			Headers: map[string]string{
+				"ID":                     "ID",
+				"Name":                   "Name",
+				"DBA":                    "DBA",
+				"Identifying Code Count": "IdentifyingCodeCount",
+				"ContactName":            "Contact Name",
+				"ContactEmail":           "Contact Email",
+				"ContactPhone":           "Contact Phone",
+				"ContactFax":             "Contact Fax",
+				"ContactMethod":          "Contact Method",
 			},
-			Data: []map[string]string{}, // empty for now
+			Data: []map[string]string{{
+				"ID":                   "1",
+				"Name":                 "FedEx",
+				"DBA":                  "Federal Express",
+				"IdentifyingCodeCount": "1",
+				"ContactName":          "John Doe",
+				"ContactEmail":         "noreply@freightcms.com",
+				"ContactPhone":         "123-456-7890",
+				"ContactFax":           "123-456-7890",
+				"ContactMethod":        "Email",
+			}},
 		},
 	}
-	if err := t.Execute(w, &model); err != nil {
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
+	if err := t.Execute(w, model); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 }

@@ -5,7 +5,7 @@ type PageViewModel struct {
 }
 
 type TableViewModel struct {
-	Headers []string            // column headers to display in table
+	Headers map[string]string   // column headers to display in table
 	Data    []map[string]string // key is the column key and value is he access property
 }
 
