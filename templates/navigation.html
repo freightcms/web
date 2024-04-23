@@ -2,6 +2,12 @@
 <nav>
     <a href="/">Home</a>
     <a href="/login">Login</a>
-    <a href="/carriers">Carriers</a>
+    <div class="dropdown">
+        <button class="dropbtn">Carrier Tools & Management</button>
+        <div class="dropdown-content">
+            <a href="/carriers">Carriers</a>
+            <a href="/carriers/new">New</a>
+        </div>
+    </div>
 </nav>
 {{ end }}
