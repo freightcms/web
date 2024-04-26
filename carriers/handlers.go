@@ -1,32 +1,15 @@
 package carriers
 
 import (
+	"embed"
 	"net/http"
-	"os"
-	"path/filepath"
 	"text/template"
 
 	"github.com/freightcms/web/common"
 )
 
-type CarrierViewModel struct {
-	ID                   string // unique identifier for the carrier
-	Url                  string // href linking to the carrier details page
-	Name                 string // name of the carrier
-	DBA                  string // doing business as name of the carrier
-	IdentifyingCodeCount int    // number of identifying codes
-	ContactName          string // name of the contact person
-	ContactEmail         string // email of the contact person
-	ContactPhone         string // phone number of the contact person
-	ContactFax           string // fax number of the contact person
-	ContactMethod        string // preferred contact method
-}
-
-type CarrierHomeModel struct {
-	common.PageViewModel
-	common.TableViewMetadata
-	common.TableViewModel
-}
+//go:embed templates/*.html
+var templateFiles embed.FS
 
 // Home is the handler for when a user hits the carrier home route.
 func Carriers(w http.ResponseWriter, r *http.Request) {
@@ -35,18 +18,8 @@ func Carriers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	dir, err := os.Getwd()
-	if err != nil {
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
-		return
-	}
 	// Load the template file
-	t, err := template.ParseFiles(
-		filepath.Join(dir, "templates/layout.html"),
-		filepath.Join(dir, "templates/styles.html"),
-		filepath.Join(dir, "templates/navigation.html"),
-		filepath.Join(dir, "templates/carriers", "index.html"),
-		filepath.Join(dir, "templates/carriers", "list.html"))
+	t, err := template.ParseFS(templateFiles, "templates/(layout|navigation|styles|index).html")
 	if err != nil {
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
