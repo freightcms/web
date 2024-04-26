@@ -1,0 +1,25 @@
+{{ define "carrier-list" }}
+<div role="navigation">
+    <a href="{{ .TableViewMetadata.PrevLink }}">Previous</a>
+    <a href="{{ .TableViewMetadata.NextLink }}">Next</a>
+</div>
+<table role="table" title="Carrier List">
+    <thead>
+        <tr role="rowheader">
+            {{ range $key, $value := $.TableViewModel.Headers }}
+                <td data-name="{{ $key }}" role="cell">{{ $value }}</td>
+            {{ end }}
+        </tr>
+    </thead>
+    <tbody>
+        {{ range $.TableViewModel.Data }}
+        <tr role="row">
+            {{ $data := . }}
+            {{ range $key, $value := $.TableViewModel.Headers }}
+                <td role="cell">{{ index $data $key }}</td>
+            {{ end }}
+        </tr>
+    {{ end }}
+    </tbody>
+</table>
+{{ end }}

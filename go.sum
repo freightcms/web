@@ -2,3 +2,5 @@ github.com/freightcms/web/carriers v0.0.0-20240426001647-9136fa06f63a h1:Z1LiKxV
 github.com/freightcms/web/carriers v0.0.0-20240426001647-9136fa06f63a/go.mod h1:jchyKr/qced7bVwz1g58Wk8RXJn2Em+TCm+PwWspQIc=
 github.com/freightcms/web/common v0.0.0-20240426001647-9136fa06f63a h1:ZJ0yR05w9W6M8nywmJliDl3TmROojc9j0JodVx3wdjE=
 github.com/freightcms/web/common v0.0.0-20240426001647-9136fa06f63a/go.mod h1:Gp4/aYh3NRw4OD6D7L7dx0Lr4r1j/Ag6uo9V1+AAqrc=
+github.com/freightcms/web/handlers v0.0.0-20240426003241-51f2e4ac2ea4 h1:PnlM/yPgVkH853lGoKx7Hid8doyAlli6lOALjwt4k28=
+github.com/freightcms/web/handlers v0.0.0-20240426003241-51f2e4ac2ea4/go.mod h1:gmPWqsUg3PXmAFsIMJZ28malHW/bfo7Be7UQE4YGRew=
