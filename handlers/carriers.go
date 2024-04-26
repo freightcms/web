@@ -7,6 +7,7 @@ import (
 	"text/template"
 
 	"github.com/freightcms/web/common"
+	"github.com/freightcms/web/models"
 )
 
 // Home is the handler for when a user hits the carrier home route.
@@ -33,7 +34,7 @@ func Carriers(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	model := CarrierHomeModel{
+	model := models.CarrierHomeModel{
 		PageViewModel: common.PageViewModel{
 			Title: "Carriers",
 		},
