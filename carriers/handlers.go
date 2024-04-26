@@ -1,10 +1,12 @@
-package handlers
+package carriers
 
 import (
 	"net/http"
 	"os"
 	"path/filepath"
 	"text/template"
+
+	"github.com/freightcms/web/common"
 )
 
 type CarrierViewModel struct {
@@ -21,9 +23,9 @@ type CarrierViewModel struct {
 }
 
 type CarrierHomeModel struct {
-	PageViewModel
-	TableViewMetadata
-	TableViewModel
+	common.PageViewModel
+	common.TableViewMetadata
+	common.TableViewModel
 }
 
 // Home is the handler for when a user hits the carrier home route.
@@ -50,16 +52,16 @@ func Carriers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	model := CarrierHomeModel{
-		PageViewModel: PageViewModel{
+		PageViewModel: common.PageViewModel{
 			Title: "Carriers",
 		},
-		TableViewMetadata: TableViewMetadata{
+		TableViewMetadata: common.TableViewMetadata{
 			Page:     1,
 			Count:    10,
 			NextLink: "/carriers?page=2",
 			PrevLink: "",
 		},
-		TableViewModel: TableViewModel{
+		TableViewModel: common.TableViewModel{
 			Headers: map[string]string{
 				"ID":                     "ID",
 				"Name":                   "Name",

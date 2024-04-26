@@ -1,10 +1,12 @@
-package handlers
+package main
 
 import (
 	"net/http"
 	"os"
 	"path/filepath"
 	"text/template"
+
+	"github.com/freightcms/web/common"
 )
 
 func GetHome(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +24,7 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 	}
 	dir, err := os.Getwd()
 	if err != nil {
-		WriteError(w, err)
+		common.WriteError(w, err)
 		return
 	}
 	t, err := template.ParseFiles(
@@ -32,11 +34,11 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 		filepath.Join(dir, "templates", "styles.html"),
 	)
 	if err != nil {
-		WriteError(w, err)
+		common.WriteError(w, err)
 		return
 	}
 	if err := t.Execute(w, model); err != nil {
-		WriteError(w, err)
+		common.WriteError(w, err)
 		return
 	}
 }

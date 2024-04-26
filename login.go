@@ -1,4 +1,4 @@
-package handlers
+package main
 
 import (
 	"net/http"
@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"regexp"
 	"text/template"
+
+	"github.com/freightcms/web/common"
 )
 
 type loginModel struct {
@@ -46,7 +48,7 @@ func GetLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	dir, err := os.Getwd()
 	if err != nil {
-		WriteError(w, err)
+		common.WriteError(w, err)
 		return
 	}
 
@@ -68,7 +70,7 @@ func GetLogin(w http.ResponseWriter, r *http.Request) {
 		Password: "",
 	}
 	if err := t.Execute(w, model); err != nil {
-		WriteError(w, err)
+		common.WriteError(w, err)
 		return
 	}
 }
@@ -104,7 +106,7 @@ func PostLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	dir, err := os.Getwd()
 	if err != nil {
-		WriteError(w, err)
+		common.WriteError(w, err)
 		return
 	}
 
@@ -116,13 +118,13 @@ func PostLogin(w http.ResponseWriter, r *http.Request) {
 
 	model, err := bind(r)
 	if err != nil {
-		WriteError(w, err)
+		common.WriteError(w, err)
 		return
 	}
 	if !model.isValid() {
 		model.Password = "" // because we don't want to show the password in the form
 		if err := t.Execute(w, model); err != nil {
-			WriteError(w, err)
+			common.WriteError(w, err)
 			return
 		}
 		return
