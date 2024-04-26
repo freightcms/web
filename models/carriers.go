@@ -20,3 +20,19 @@ type CarrierHomeModel struct {
 	common.TableViewMetadata
 	common.TableViewModel
 }
+
+type ContactViewModel struct {
+	FirstName string
+	LastName  string
+	Email     string
+	Phone     string
+	Fax       string
+}
+
+type CarrierCreateViewModel struct {
+	common.PageViewModel
+	Name             string
+	DBA              string
+	PrimaryContact   ContactViewModel
+	SecondaryContact ContactViewModel
+}

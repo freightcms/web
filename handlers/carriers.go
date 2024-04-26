@@ -73,3 +73,36 @@ func Carriers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func CarriersCreate(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	dir, err := os.Getwd()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	// Load the template file
+	t, err := template.ParseFiles(
+		filepath.Join(dir, "templates", "layout.html"),
+		filepath.Join(dir, "templates", "navigation.html"),
+		filepath.Join(dir, "templates", "styles.html"),
+		filepath.Join(dir, "templates", "carriers/create.html"),
+	)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	model := models.CarrierCreateModel{
+		PageViewModel: common.PageViewModel{
+			Title: "Carriers",
+		},
+	}
+	if err := t.Execute(w, model); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
