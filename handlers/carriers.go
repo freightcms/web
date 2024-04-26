@@ -10,7 +10,6 @@ import (
 	"github.com/freightcms/web/models"
 )
 
-// Home is the handler for when a user hits the carrier home route.
 func Carriers(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
