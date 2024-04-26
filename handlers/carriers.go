@@ -10,29 +10,69 @@ import (
 	"github.com/freightcms/web/models"
 )
 
+var rootTemplate *template.Template
+
+func init() {
+	dir, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	rootTemplate, err = template.ParseFiles(
+		filepath.Join(dir, "templates", "layout.html"),
+		filepath.Join(dir, "templates", "navigation.html"),
+		filepath.Join(dir, "templates", "styles.html"))
+	if err != nil {
+		panic(err)
+	}
+}
+
+func renderTemplate(w http.ResponseWriter, model interface{}, templateFiles ...string) error {
+	tmpl, err := rootTemplate.Clone()
+	if err != nil {
+		return err
+	}
+	// Load the template file
+	t, err := tmpl.ParseFiles(templateFiles...)
+	if err != nil {
+		return err
+	}
+	if err := t.Execute(w, model); err != nil {
+		return err
+	}
+	return nil
+}
+
+func parseCreateForm(r *http.Request) (models.CarrierCreateViewModel, error) {
+	if err := r.ParseForm(); err != nil {
+		return models.CarrierCreateViewModel{}, err
+	}
+	return models.CarrierCreateViewModel{
+		Name: r.Form.Get("name"),
+		DBA:  r.Form.Get("dba"),
+		PrimaryContact: models.ContactViewModel{
+			FirstName: r.Form.Get("primaryContactFirstName"),
+			LastName:  r.Form.Get("primaryContactLastName"),
+			Email:     r.Form.Get("primaryContactEmail"),
+			Phone:     r.Form.Get("primaryContactPhone"),
+			Fax:       r.Form.Get("primaryContactFax"),
+		},
+		SecondaryContact: models.ContactViewModel{
+			FirstName: r.Form.Get("secondaryContactFirstName"),
+			LastName:  r.Form.Get("secondaryContactLastName"),
+			Email:     r.Form.Get("secondaryContactEmail"),
+			Phone:     r.Form.Get("secondaryContactPhone"),
+			Fax:       r.Form.Get("secondaryContactFax"),
+		},
+	}, nil
+}
+
+// Carriers loads the initial carrier list template to show all carriers
 func Carriers(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	dir, err := os.Getwd()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	// Load the template file
-	t, err := template.ParseFiles(
-		filepath.Join(dir, "templates", "layout.html"),
-		filepath.Join(dir, "templates", "navigation.html"),
-		filepath.Join(dir, "templates", "styles.html"),
-		filepath.Join(dir, "templates", "carriers/index.html"),
-		filepath.Join(dir, "templates", "carriers/list.html"),
-	)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
 	model := models.CarrierHomeModel{
 		PageViewModel: common.PageViewModel{
 			Title: "Carriers",
@@ -68,41 +108,41 @@ func Carriers(w http.ResponseWriter, r *http.Request) {
 			}},
 		},
 	}
-	if err := t.Execute(w, model); err != nil {
+
+	if err := renderTemplate(w, model,
+		filepath.Join("templates", "carriers", "list.html")); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
 	}
 }
 
+// CarriersCreate function will render a default empty form for users to populate and fill out. If the HTTP method is POST, the form will be parsed and re-rendered with the user's input.
+// If the HTTP method is OPTIONS, the allowed methods will be returned in the header.
 func CarriersCreate(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	if r.Method == "GET" {
+		if err := renderTemplate(w, models.CarrierCreateViewModel{}, filepath.Join("templates", "carriers", "create.html")); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+	if r.Method == "POST" {
+		model, err := parseCreateForm(r)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		if err := renderTemplate(w, model, filepath.Join("templates", "carriers", "create.html")); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+	if r.Method == "OPTIONS" {
+		w.Header().Add("Allow", "GET, POST")
+		w.Header().Add("Content-Type", "text/plain")
+		w.WriteHeader(http.StatusOK)
 		return
 	}
-
-	dir, err := os.Getwd()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	// Load the template file
-	t, err := template.ParseFiles(
-		filepath.Join(dir, "templates", "layout.html"),
-		filepath.Join(dir, "templates", "navigation.html"),
-		filepath.Join(dir, "templates", "styles.html"),
-		filepath.Join(dir, "templates", "carriers/create.html"),
-	)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	model := models.CarrierCreateModel{
-		PageViewModel: common.PageViewModel{
-			Title: "Carriers",
-		},
-	}
-	if err := t.Execute(w, model); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	w.WriteHeader(http.StatusMethodNotAllowed)
+	w.Write([]byte("Method not allowed"))
+	w.Header().Add("Allow", "GET, POST")
+	w.Header().Add("Content-Type", "text/plain")
 }
