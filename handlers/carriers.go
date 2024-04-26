@@ -68,50 +68,68 @@ func parseCreateForm(r *http.Request) (models.CarrierCreateViewModel, error) {
 
 // Carriers loads the initial carrier list template to show all carriers
 func Carriers(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" {
+	if r.Method == "GET" {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		model := models.CarrierHomeModel{
+			PageViewModel: common.PageViewModel{
+				Title: "Carriers",
+			},
+			TableViewMetadata: common.TableViewMetadata{
+				Page:     1,
+				Count:    10,
+				NextLink: "/carriers?page=2",
+				PrevLink: "",
+			},
+			TableViewModel: common.TableViewModel{
+				Headers: map[string]string{
+					"ID":                     "ID",
+					"Name":                   "Name",
+					"DBA":                    "DBA",
+					"Identifying Code Count": "IdentifyingCodeCount",
+					"ContactName":            "Contact Name",
+					"ContactEmail":           "Contact Email",
+					"ContactPhone":           "Contact Phone",
+					"ContactFax":             "Contact Fax",
+					"ContactMethod":          "Contact Method",
+				},
+				Data: []map[string]string{{
+					"ID":                   "1",
+					"Name":                 "FedEx",
+					"DBA":                  "Federal Express",
+					"IdentifyingCodeCount": "1",
+					"ContactName":          "John Doe",
+					"ContactEmail":         "noreply@freightcms.com",
+					"ContactPhone":         "123-456-7890",
+					"ContactFax":           "123-456-7890",
+					"ContactMethod":        "Email",
+				}},
+			},
+		}
+
+		if err := renderTemplate(w, model,
+			filepath.Join("templates", "carriers", "list.html")); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
 		return
 	}
 
-	model := models.CarrierHomeModel{
-		PageViewModel: common.PageViewModel{
-			Title: "Carriers",
-		},
-		TableViewMetadata: common.TableViewMetadata{
-			Page:     1,
-			Count:    10,
-			NextLink: "/carriers?page=2",
-			PrevLink: "",
-		},
-		TableViewModel: common.TableViewModel{
-			Headers: map[string]string{
-				"ID":                     "ID",
-				"Name":                   "Name",
-				"DBA":                    "DBA",
-				"Identifying Code Count": "IdentifyingCodeCount",
-				"ContactName":            "Contact Name",
-				"ContactEmail":           "Contact Email",
-				"ContactPhone":           "Contact Phone",
-				"ContactFax":             "Contact Fax",
-				"ContactMethod":          "Contact Method",
-			},
-			Data: []map[string]string{{
-				"ID":                   "1",
-				"Name":                 "FedEx",
-				"DBA":                  "Federal Express",
-				"IdentifyingCodeCount": "1",
-				"ContactName":          "John Doe",
-				"ContactEmail":         "noreply@freightcms.com",
-				"ContactPhone":         "123-456-7890",
-				"ContactFax":           "123-456-7890",
-				"ContactMethod":        "Email",
-			}},
-		},
+	if r.Method == "POST" {
+		model, err := parseCreateForm(r)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		if err := renderTemplate(w, model, filepath.Join("templates", "carriers", "create.html")); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 	}
 
-	if err := renderTemplate(w, model,
-		filepath.Join("templates", "carriers", "list.html")); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+	if r.Method == "OPTIONS" {
+		w.Header().Add("Allow", "GET, POST")
+		w.Header().Add("Content-Type", "text/plain")
+		w.WriteHeader(http.StatusOK)
+		return
 	}
 }
 
@@ -124,23 +142,7 @@ func CarriersCreate(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	if r.Method == "POST" {
-		model, err := parseCreateForm(r)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		if err := renderTemplate(w, model, filepath.Join("templates", "carriers", "create.html")); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-	}
-	if r.Method == "OPTIONS" {
-		w.Header().Add("Allow", "GET, POST")
-		w.Header().Add("Content-Type", "text/plain")
-		w.WriteHeader(http.StatusOK)
-		return
-	}
+
 	w.WriteHeader(http.StatusMethodNotAllowed)
 	w.Write([]byte("Method not allowed"))
 	w.Header().Add("Allow", "GET, POST")

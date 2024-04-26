@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 
-	"github.com/freightcms/web/carriers"
 	"github.com/freightcms/web/handlers"
 )
 
@@ -22,7 +21,8 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		handlers.GetHome(w, r)
 	})
-	http.HandleFunc("/carriers", carriers.Carriers)
+	http.HandleFunc("/carriers", handlers.Carriers)
+	http.HandleFunc("/carriers/create", handlers.CarriersCreate)
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
