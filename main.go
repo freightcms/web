@@ -4,22 +4,23 @@ import (
 	"net/http"
 
 	"github.com/freightcms/web/carriers"
+	"github.com/freightcms/web/handlers"
 )
 
 func main() {
 	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "GET":
-			GetLogin(w, r)
+			handlers.GetLogin(w, r)
 		case "POST":
-			PostLogin(w, r)
+			handlers.PostLogin(w, r)
 		default:
 			w.WriteHeader(http.StatusMethodNotAllowed)
 			w.Write([]byte("Method not allowed"))
 		}
 	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		GetHome(w, r)
+		handlers.GetHome(w, r)
 	})
 	http.HandleFunc("/carriers", carriers.Carriers)
 
