@@ -2,7 +2,6 @@ package main
 
 import (
 	"html/template"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -11,20 +10,21 @@ import (
 )
 
 func main() {
-	currDir, err := os.Getwd()
+	dir, err := os.Getwd()
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-	t, err := template.ParseFiles(
-		filepath.Join(currDir, "templates/pages/about.html"),
-	)
 	srvr := http.NewServeMux()
 
+	t, err := template.ParseFiles(
+		filepath.Join(dir, "./templates/layouts/default.html"),
+	)
 	router := handlers.NewRouter(t)
 
+	srvr.HandleFunc("/", router.GetHome)
 	srvr.HandleFunc("/about", router.GetAbout)
 	srvr.HandleFunc("/contact", router.GetContact)
-	srvr.HandleFunc("/", router.GetHome)
+	srvr.HandleFunc("/404", router.GetNotFound)
 
 	http.ListenAndServe(":8080", srvr)
 }
