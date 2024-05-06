@@ -31,3 +31,5 @@ Web application hosted at https://www.freightcms.com/
   - [ ] Support searching for carriers by field
   - [ ] Support paging through carriers that are
   - [ ] Support filtering carriers by fields
+- [ ] Address/Location Support
+  - [x] Create a common address/location model that can be used for pickups, stops, companies, carriers, warehouses, ports, etc.
