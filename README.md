@@ -11,8 +11,8 @@ Web application hosted at https://www.freightcms.com/
 ### Support Freight Carriers
 
 - [ ] Support Creating a Freight Carrier
-   - [ ] Support Carrier Location Information
-   - [ ] Support Contact Information
+   - [x] Support Carrier Location Information
+   - [x] Support Contact Information
    - [ ] Support General fields, Name, DBA, Created At, Updated At, Created By, Updated By
    - [ ] Support Compliance
       - [ ] Support Insurance Information
