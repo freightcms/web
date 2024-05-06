@@ -8,7 +8,11 @@ Web application hosted at https://www.freightcms.com/
 - [ ] Document in README about what this project is
 - [ ] Load environment variables using goenv
 
-### Support Freight Carriers
+### Supported Features
+
+- [x] Support Model/Database auditing
+
+## TODO
 
 - [ ] Support Creating a Freight Carrier
    - [x] Support Carrier Location Information
