@@ -18,6 +18,13 @@ var (
 	Other         TransportationMode = "Other"
 )
 
+type AuditModel struct {
+	CreatedBy string // CreatedBy can be a system ID, user ID, system name, etc. It is up to the implementer to decide what this should be.
+	CreatedAt string // CreatedAt is a timestamp of when the record was created
+	UpdatedBy string // UpdatedBy can be a system ID, user ID, system name, etc. It is up to the implementer to decide what this should be.
+	UpdatedAt string // UpdatedAt is a timestamp of when the record was last updated
+}
+
 // ReferenceModel is a way for customers to directly reference a piece of data in the source system
 // using their own identifiers. Each reference should have it's unique dataset belonging to each
 // resource. For example there should be a location references data set, a carrier references data,
@@ -26,6 +33,7 @@ type ReferenceModel struct {
 	ID    string // Database generated ID that belongs to the source system
 	Name  string // Name of the reference
 	Value string // Value of the reference
+	AuditModel
 }
 
 // ContactModel with basic properties necessary to identify a person or entity
@@ -35,4 +43,5 @@ type ContactModel struct {
 	EmailAddress string  // Contact email address
 	FaxNumber    *string // Contact fax number. there are some cases where this would be required and others
 	PhoneNumber  *string // Phone number of the contact. In some instances this may be required and other's may not. It is up to validators and context to decide when a consumer would want to require this information.
+	AuditModel
 }

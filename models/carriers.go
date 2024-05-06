@@ -7,6 +7,7 @@ type Insurance struct {
 	ExpirationDate string // Expiration date time in UTC
 	ProviderName   string // Name of the insurance provider
 	PolicyNumber   string // Policy number for the insurance
+	AuditModel
 }
 
 type FreightCarrierModel struct {
@@ -19,4 +20,5 @@ type FreightCarrierModel struct {
 	SecondaryContact *ContactModel    // SecondaryContact is the secondary contact for the carrier
 	References       []ReferenceModel // collection of references that can be used by consumers to identify carrier information
 	Insurance        []Insurance      // collection of insurance information for the carrier
+	AuditModel
 }

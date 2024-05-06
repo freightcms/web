@@ -16,4 +16,5 @@ type LocationModel struct {
 	LocationType string           // Type of location, such as 'warehouse', 'store', 'office', 'residential', 'school', 'business', 'convention center', etc.
 	RollupID     *string          // ID of the roll-up location. This is used to identify a parent location that may be a roll-up of multiple locations. For example, a corporate office that receives mail for multiple locations.
 	References   []ReferenceModel // collection of references that can be used by consumers to identify location information
+	AuditModel
 }
