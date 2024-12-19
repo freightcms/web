@@ -1,0 +1,24 @@
+{
+  "name": "freightcms-web",
+  "version": "1.0.0",
+  "description": "web application for https://www.freightcms.app/",
+  "keywords": [
+    "freight",
+    "logistics"
+  ],
+  "homepage": "https://github.com/freightcms/web#readme",
+  "bugs": {
+    "url": "https://github.com/freightcms/web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freightcms/web.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "FreightCMS",
+  "type": "commonjs",
+  "main": "app/index.ts",
+  "scripts": {
+    "test": "jest"
+  }
+}
