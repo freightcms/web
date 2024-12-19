@@ -1,7 +1,7 @@
 {
-  "name": "freightcms-web",
+  "name": "FreightCMSApp",
   "version": "1.0.0",
-  "description": "web application for https://www.freightcms.app/",
+  "description": "application for https://freightcms.app/",
   "keywords": [
     "freight",
     "logistics"
@@ -19,6 +19,32 @@
   "type": "commonjs",
   "main": "app/index.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
+  },
+  "dependencies": {
+    "graphql": "^16.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.0.2"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.1.0",
+    "@webpack-cli/generators": "^3.0.7",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.17.0",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "prettier": "^3.4.2",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0"
   }
 }
