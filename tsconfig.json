@@ -4,7 +4,12 @@
         "noImplicitAny": true,
         "sourceMap": true,
         "removeComments": true,
-        "noEmit": false
+        "noEmit": false,
+        "baseUrl": "./src",
+        "paths": {
+            "@components": ["./components/*"],
+            "@features": ["./features/*"]
+        }
     },
     "include": ["src/**/*"],
     "exclude": ["/node_modules/", "public/**/*", "**/*.spec.ts"]
