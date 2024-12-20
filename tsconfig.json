@@ -8,7 +8,8 @@
         "baseUrl": "./src",
         "paths": {
             "@components": ["./components/*"],
-            "@features": ["./features/*"]
+            "@features": ["./features/*"],
+            "@hooks": ["./hooks/*"]
         }
     },
     "include": ["src/**/*"],

@@ -1,0 +1,4 @@
+export { default as LoadingComponent } './loading.component';
+export type {
+	LoadingComponentProps
+} from './loading.component';
