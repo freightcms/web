@@ -1,0 +1,3 @@
+export enum QueryKeys {
+    FETCH_ORGANIZIATIONS = 'FETCH_ORGANIZIATIONS',
+}
