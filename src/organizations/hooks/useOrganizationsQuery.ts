@@ -1,11 +1,11 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLoadableQuery } from '@apollo/client';
 
 export interface UseOrganizationsVariables {
     pageSize: number;
     page: number;
     id?: string;
     name?: string;
-    rollupId: string;
+    rollupId?: string;
     dba?: string;
     sortBy?: string;
 }
@@ -14,11 +14,18 @@ export interface UseGetOrganizationsQuery {
     variables: UseOrganizationsVariables;
 }
 
+export interface OrganizationModel {
+    results: Array<any>;
+    count: number;
+    pageSize: number;
+    page: number;
+}
+
 /**
  * Paginate and allows for searching for an organization or multiple organizations
  * @public
  */
-const useGetOrganizationsQuery = ({ variables }: UseGetOrganizationsQuery) => {
+const useGetOrganizationsQuery = () => {
     const queryKey = gql`
 	query GetOrganizations($page: Int!, $pageSize Int!, $id: String, $name: $String, rollupId: $String, $dba: String, $sortBy: String) {
 	  organizations(page: $page, pageSize: $pageSize) {
@@ -29,22 +36,14 @@ const useGetOrganizationsQuery = ({ variables }: UseGetOrganizationsQuery) => {
 	  }
 	}
     `;
-    const { data, loading, error, stopPolling, startPolling } = useQuery(
-        queryKey,
-        {
-            variables,
-        },
-    );
+    const [getOrganizations, organizationsQueryRef] = useLoadableQuery<
+        OrganizationModel,
+        UseOrganizationsVariables
+    >(queryKey);
 
     return {
-        organizations: data || null,
-        total: data.total ?? 0,
-        page: data.page ?? 0,
-        pageSize: data.pageSize ?? 0,
-        isLoading: loading,
-        error,
-        stopPolling,
-        startPolling,
+        getOrganizations,
+        organizationsQueryRef,
     };
 };
 
