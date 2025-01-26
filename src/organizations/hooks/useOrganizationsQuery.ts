@@ -1,3 +1,4 @@
+import { OrganizationModel } from '../types';
 import { gql, useLoadableQuery } from '@apollo/client';
 
 export interface UseOrganizationsVariables {
@@ -14,8 +15,8 @@ export interface UseGetOrganizationsQuery {
     variables: UseOrganizationsVariables;
 }
 
-export interface OrganizationModel {
-    results: Array<any>;
+export interface OrganizationSearchModel {
+    results: Array<OrganizationModel>;
     count: number;
     pageSize: number;
     page: number;
@@ -37,7 +38,7 @@ const useGetOrganizationsQuery = () => {
 	}
     `;
     const [getOrganizations, organizationsQueryRef] = useLoadableQuery<
-        OrganizationModel,
+        OrganizationSearchModel,
         UseOrganizationsVariables
     >(queryKey);
 

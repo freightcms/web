@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface LoadingComponentProps {
     title?: string;
     message?: string;

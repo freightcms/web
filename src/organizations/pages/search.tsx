@@ -1,16 +1,17 @@
 import { FormEvent, useState } from 'react';
-import { QueryRef, useReadQuery } from '@apollo/client';
+import { NetworkStatus, QueryRef, useReadQuery } from '@apollo/client';
 import {
     useOrganizationsQuery,
     UseOrganizationsVariables,
 } from 'organizations/hooks';
 import { OrganizationModel } from 'organizations/hooks/useOrganizationsQuery';
+import { LoadingComponent } from '@components';
 
 export interface SearchResultsTableProps {
     currentPage: number;
-    onNextPageClick: (currentPage: number) => void;
-    onPreviousPageClick: (previousPage: number) => void;
-    queryRef: QueryRef<OrganizationModel, UseOrganizationsVariables> | null;
+    onNextPageClick: () => void;
+    onPreviousPageClick: () => void;
+    queryRef: QueryRef<OrganizationModel, UseOrganizationsVariables>;
 }
 
 export const SearchResultsTable = ({
@@ -18,17 +19,27 @@ export const SearchResultsTable = ({
     onNextPageClick,
     onPreviousPageClick,
 }: SearchResultsTableProps) => {
-    const {} = useReadQuery(queryRef);
+    const { data, error, networkStatus } = useReadQuery(queryRef);
+
+    if (networkStatus === NetworkStatus.loading) {
+        return <LoadingComponent />;
+    }
+    if (networkStatus === NetworkStatus.error || error) {
+        return <span>There was ane rror fetching data</span>;
+    }
 
     return (
         <div>
+            {' '}
             <nav>
                 <ul>
                     <li>
-                        <button onP>Previous</button>
+                        <button onClick={() => onPreviousPageClick()}>
+                            Previous
+                        </button>
                     </li>
                     <li>
-                        <button>Next</button>
+                        <button onClick={() => onNextPageClick()}>Next</button>
                     </li>
                 </ul>
             </nav>
@@ -42,15 +53,25 @@ export const SearchResultsTable = ({
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    {data?.results?.length ?
+                        data.results.map((org) => (
+                            <tr key={org.id}>
+                                <td>{org.id}</td>
+                                <td>{org.name}</td>
+                                <td>{org.dba}</td>
+                            </tr>
+                        ))
+                    :   null}
+                </tbody>
             </table>
             <nav>
                 <ul>
                     <li>
-                        <button>Previous</button>
+                        <button onClick={onPreviousPageClick}>Previous</button>
                     </li>
                     <li>
-                        <button>Next</button>
+                        <button onClick={onNextPageClick}>Next</button>
                     </li>
                 </ul>
             </nav>
