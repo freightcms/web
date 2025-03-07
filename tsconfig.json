@@ -1,17 +1,16 @@
 {
-    "extends": "@tsconfig/create-react-app/tsconfig.json",
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "sourceMap": true,
-        "removeComments": true,
-        "noEmit": false,
-        "baseUrl": "./src",
-        "paths": {
-            "@components": ["./components/*"],
-            "@features": ["./features/*"],
-            "@hooks": ["./hooks/*"]
-        }
-    },
-    "include": ["src/**/*"],
-    "exclude": ["/node_modules/", "public/**/*", "**/*.spec.ts"]
+  "extends": "@tsconfig/create-react-app/tsconfig.json",
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "noEmit": false,
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@features/*": ["./src/features/*"],
+      "@hooks/*": ["./src/hooks/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["/node_modules/", "public/**/*", "**/*.spec.ts"]
 }
