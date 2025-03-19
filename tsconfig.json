@@ -5,6 +5,7 @@
     "sourceMap": true,
     "removeComments": true,
     "noEmit": false,
+    "jsx": "react",
     "paths": {
       "@components/*": ["./src/components/*"],
       "@features/*": ["./src/features/*"],
