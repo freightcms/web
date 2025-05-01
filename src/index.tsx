@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { connectApolloClientToVSCodeDevTools } from "@apollo/client-devtools-vscode";
-import { CarrierPage } from './features/carriers/page';
+import { CarrierPage, CreateCarrierPage } from './features/carriers';
 
 // see https://www.apollographql.com/docs/react/get-started
 //
@@ -35,6 +35,8 @@ root.render(
 			<Routes>
 				<Route index element={<App />} />
         <Route path="carriers" element={<CarrierPage />} />
+        <Route path="carriers" element={<CarrierPage />} />
+        <Route path="carriers/new" element={<CreateCarrierPage />} />
 			</Routes>
 		</BrowserRouter>
 	</ApolloProvider>
