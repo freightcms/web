@@ -4,11 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { connectApolloClientToVSCodeDevTools } from "@apollo/client-devtools-vscode";
 
+// see https://www.apollographql.com/docs/react/get-started
+//
+// for developer testing add https://www.apollographql.com/docs/react/development-testing/developer-tooling#apollo-client-devtools
 const client = new ApolloClient({
   uri: 'https://flyby-router-demo.herokuapp.com/',
   cache: new InMemoryCache(),
 });
+
+// we recommend wrapping this statement in a check for e.g. process.env.NODE_ENV === "development"
+if (process.env.NODE_ENV === "development") {
+	const devtoolsRegistration = connectApolloClientToVSCodeDevTools(
+	  client,
+	  // the default port of the VSCode DevTools is 7095
+	  "ws://localhost:7095",
+
+	);
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +31,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
 	<ApolloProvider client={client}>
-		<App />
+		<BrowserRouter>
+			<Routes>
+				<Route index element={<App />} />
+			</Routes>
+		</BrowserRouter>
 	</ApolloProvider>
   </React.StrictMode>
 );
