@@ -6,12 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { connectApolloClientToVSCodeDevTools } from "@apollo/client-devtools-vscode";
+import { CarrierPage } from './features/carriers/page';
 
 // see https://www.apollographql.com/docs/react/get-started
 //
 // for developer testing add https://www.apollographql.com/docs/react/development-testing/developer-tooling#apollo-client-devtools
 const client = new ApolloClient({
-  uri: 'https://flyby-router-demo.herokuapp.com/',
+  uri: 'http://localhost:8080/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -33,6 +34,7 @@ root.render(
 		<BrowserRouter>
 			<Routes>
 				<Route index element={<App />} />
+        <Route path="carriers" element={<CarrierPage />} />
 			</Routes>
 		</BrowserRouter>
 	</ApolloProvider>
