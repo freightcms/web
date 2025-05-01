@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === "development") {
 	  client,
 	  // the default port of the VSCode DevTools is 7095
 	  "ws://localhost:7095",
-
 	);
 }
 
