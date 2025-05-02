@@ -7,6 +7,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { connectApolloClientToVSCodeDevTools } from "@apollo/client-devtools-vscode";
 import { CarrierPage, CreateCarrierPage } from './features/carriers';
+import Layout from './layout';
 
 // see https://www.apollographql.com/docs/react/get-started
 //
@@ -33,10 +34,12 @@ root.render(
 	<ApolloProvider client={client}>
 		<BrowserRouter>
 			<Routes>
-				<Route index element={<App />} />
-        <Route path="carriers" element={<CarrierPage />} />
-        <Route path="carriers" element={<CarrierPage />} />
-        <Route path="carriers/new" element={<CreateCarrierPage />} />
+        <Route element={<Layout />}>
+          <Route index path="/" element={<App />} />
+          <Route path="carriers" element={<CarrierPage />} />
+          <Route path="carriers" element={<CarrierPage />} />
+          <Route path="carriers/new" element={<CreateCarrierPage />} />
+        </Route>
 			</Routes>
 		</BrowserRouter>
 	</ApolloProvider>
