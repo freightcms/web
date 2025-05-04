@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router";
 import "./navigation.css";
 
 const Nav = () => {
@@ -48,48 +49,34 @@ const Nav = () => {
 
         <ul>
           <li>
-            <a href="/" ref={firstLinkRef} tabIndex={isMenuOpen ? 0 : -1}>
+            <Link to="/" ref={firstLinkRef} tabIndex={isMenuOpen ? 0 : -1}>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <button
               onClick={(e) => {
                 e.preventDefault();
                 toggleSubMenu(1);
               }}
-              aria-expanded={activeSubMenu === 1}
               aria-controls="services-submenu"
               tabIndex={isMenuOpen ? 0 : -1}
             >
-              Services
-            </a>
+              Carriers
+            </button>
             <ul
+              aria-expanded={activeSubMenu === 1}
               id="services-submenu"
               className="sub-menu"
               aria-hidden={activeSubMenu !== 1}
             >
               <li>
-                <a href="/">Web Design</a>
+                <Link to="/carriers">Search</Link>
               </li>
               <li>
-                <a href="/">Development</a>
-              </li>
-              <li>
-                <a href="/">SEO</a>
+                <Link to="/carriers/new">New</Link>
               </li>
             </ul>
-          </li>
-          <li>
-            <a href="/" tabIndex={isMenuOpen ? 0 : -1}>
-              About
-            </a>
-          </li>
-          <li>
-            <a href="/" tabIndex={isMenuOpen ? 0 : -1}>
-              Contact
-            </a>
           </li>
         </ul>
       </nav>
