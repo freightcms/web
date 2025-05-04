@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
 import "./navigation.css";
+import classnames from "classnames";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -67,7 +68,7 @@ const Nav = () => {
             <ul
               aria-expanded={activeSubMenu === 1}
               id="services-submenu"
-              className="sub-menu"
+              className={classnames("sub-menu", { "sub-menu-open": activeSubMenu === 1, "sub-menu-closed": activeSubMenu !== 1})}
               aria-hidden={activeSubMenu !== 1}
             >
               <li>

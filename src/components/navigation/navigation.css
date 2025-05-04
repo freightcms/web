@@ -100,3 +100,11 @@
   display: block;
 }
 
+.sub-menu-open {
+  transition: top 0.3s ease; /* Slide effect */
+}
+
+.sub-menu-closed {
+  transition: bottom 0.3s ease; /* Slide effect */
+  display: none;
+}
