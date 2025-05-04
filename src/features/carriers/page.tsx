@@ -1,12 +1,14 @@
-import React from 'react';
-import { CarrierTable } from './table';
+import React from "react";
+import { CarrierTable } from "./table";
 
 const CarrierPage = () => {
-  return (<div>
-    <h1>Carriers</h1>
-    <hr />
-    <CarrierTable />
-  </div>);
+  return (
+    <div>
+      <h1>Carriers</h1>
+      <hr />
+      <CarrierTable />
+    </div>
+  );
 };
 
-export {CarrierPage};
+export { CarrierPage };
