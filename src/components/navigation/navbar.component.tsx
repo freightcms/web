@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './navigation.css';
+import React, { useState, useEffect, useRef } from "react";
+import "./navigation.css";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [activeSubMenu, setActiveSubMenu] = useState<number|null>(null);
+  const [activeSubMenu, setActiveSubMenu] = useState<number | null>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
-  const firstLinkRef = useRef<HTMLAnchorElement|null>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -33,7 +33,7 @@ const Nav = () => {
       </button>
       <nav
         id="side-menu"
-        className={`side-menu ${isMenuOpen ? 'open' : ''}`}
+        className={`side-menu ${isMenuOpen ? "open" : ""}`}
         role="navigation"
         aria-hidden={!isMenuOpen}
       >
@@ -70,9 +70,15 @@ const Nav = () => {
               className="sub-menu"
               aria-hidden={activeSubMenu !== 1}
             >
-              <li><a href="/">Web Design</a></li>
-              <li><a href="/">Development</a></li>
-              <li><a href="/">SEO</a></li>
+              <li>
+                <a href="/">Web Design</a>
+              </li>
+              <li>
+                <a href="/">Development</a>
+              </li>
+              <li>
+                <a href="/">SEO</a>
+              </li>
             </ul>
           </li>
           <li>
@@ -87,9 +93,8 @@ const Nav = () => {
           </li>
         </ul>
       </nav>
-  </>);
+    </>
+  );
 };
 
 export default Nav;
-
-
