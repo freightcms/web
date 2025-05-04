@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { connectApolloClientToVSCodeDevTools } from "@apollo/client-devtools-vscode";
 import { CarrierPage, CreateCarrierPage } from "./features/carriers";
-import Layout from "./layout";
+import App from "./App";
+import { HomePage } from "./pages";
 
 // see https://www.apollographql.com/docs/react/get-started
 //
@@ -34,9 +34,8 @@ root.render(
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}>
-            <Route index path="/" element={<App />} />
-            <Route path="carriers" element={<CarrierPage />} />
+          <Route element={<App />}>
+            <Route index path="/" element={<HomePage />} />
             <Route path="carriers" element={<CarrierPage />} />
             <Route path="carriers/new" element={<CreateCarrierPage />} />
           </Route>
