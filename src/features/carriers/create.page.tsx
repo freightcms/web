@@ -1,5 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import { FormEvent, FormEventHandler, useState } from "react";
+import "../../forms.css";
 
 const CREATE_CARRIER_QL = gql`
   mutation CreateCarrier($name: String!, $dba: String!) {
