@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { connectApolloClientToVSCodeDevTools } from "@apollo/client-devtools-vscode";
 import { CarrierPage, CreateCarrierPage } from "./features/carriers";
 import App from "./App";
-import { HomePage } from "./pages";
+import { HomePage, LoginPage } from "./pages";
 
 // see https://www.apollographql.com/docs/react/get-started
 //
@@ -38,6 +38,7 @@ root.render(
             <Route index path="/" element={<HomePage />} />
             <Route path="carriers" element={<CarrierPage />} />
             <Route path="carriers/new" element={<CreateCarrierPage />} />
+            <Route path="login" element={<LoginPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -55,15 +55,16 @@
 
 .side-menu li a,
 .side-menu li button {
-  color: #fff;
+  color: #507d2a;
   text-decoration: none;
-  font-size: 18px;
   display: inline-block;
+  font-size: x-large;
 }
 
 .side-menu li button {
   background-color: inherit;
   border: none;
+  cursor: context-menu;
 }
 
 .side-menu li a:hover,
@@ -109,3 +110,5 @@
   transition: bottom 0.3s ease; /* Slide effect */
   display: none;
 }
+
+

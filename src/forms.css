@@ -2,3 +2,11 @@ form input {
   border-color: #507d2a;
   border-radius: 0.33vh;
 }
+
+form .inline {
+  display: inline-flex;
+}
+
+form .inline > label {
+  margin-right: 0.25vh;
+}
