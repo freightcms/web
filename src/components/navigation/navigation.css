@@ -26,7 +26,27 @@
   color: #fff;
   transition: left 0.3s ease; /* Slide effect */
   z-index: 1000; /* Overlay above the document */
+}
+
+nav.side-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+nav.side-menu > ul {
+  display: flex;
+  flex-direction: column;
+}
+
+nav.side-menu > ul:first-of-type {
   padding-top: 60px;
+}
+
+nav.side-menu > ul:last-child {
+  margin-top: auto;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .side-menu.open {
@@ -49,12 +69,9 @@
   list-style: none;
 }
 
-.side-menu li {
-  padding: 15px 0;
-}
-
 .side-menu li a,
 .side-menu li button {
+  padding-left: 0;
   color: #507d2a;
   text-decoration: none;
   display: inline-block;
@@ -67,22 +84,10 @@
   cursor: context-menu;
 }
 
-.side-menu li a:hover,
-.side-menu li a:focus,
-.side-menu li button:hover,
-.side-menu li button:focus {
-  background-color: #575757;
-  padding: 2px 6px;
-}
-
 /* Submenu Styling */
 .sub-menu {
   list-style: none;
-  padding-left: 20px;
-}
-
-.sub-menu li {
-  padding: 8px 0;
+  padding-left: 1em;
 }
 
 /* Overlay background */

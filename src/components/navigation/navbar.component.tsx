@@ -80,6 +80,10 @@ const Nav = () => {
             </ul>
           </li>
         </ul>
+        <ul>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/Settings">Settings</Link></li>
+        </ul>
       </nav>
     </>
   );
