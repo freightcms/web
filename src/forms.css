@@ -4,6 +4,11 @@ form {
   flex-direction: column;
   gap: 8px;
 
+  legend {
+    font-size: larger;
+    font-weight: bold;
+  }
+
   div:last-child {
     display: flex;
     flex-direction: row;
@@ -33,6 +38,7 @@ form {
     display: grid;
     grid-column-gap: 8px;
     grid-row-gap: 8px;
+    border-radius: 8px;
   }
 
   label {
@@ -48,5 +54,6 @@ form {
   button, input[type="submit"], input[type="button"] {
     border: none;
     font-size: large;
+    padding: 4px 8px 4px 8px;
   }
 }
