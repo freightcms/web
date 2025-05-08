@@ -73,6 +73,7 @@ nav {
       padding-top: 8px;
 
       a, button {
+        font-size: large;
         padding-left: 0;
         color: #507d2a;
         text-decoration: none;
@@ -82,3 +83,8 @@ nav {
   }
 }
 
+li {
+  ul {
+    padding-left: 8px;
+  }
+}
