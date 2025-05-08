@@ -36,6 +36,7 @@ nav.side-menu {
 nav.side-menu > ul {
   display: flex;
   flex-direction: column;
+  column-gap: 8px;
 }
 
 nav.side-menu > ul:first-of-type {
@@ -47,6 +48,7 @@ nav.side-menu > ul:last-child {
   flex-direction: row;
   display: flex;
   justify-content: flex-end;
+  padding-right: 14px;
 }
 
 .side-menu.open {
@@ -69,6 +71,10 @@ nav.side-menu > ul:last-child {
   list-style: none;
 }
 
+.side-menu ul > li {
+  padding-top: 8px;
+}
+
 .side-menu li a,
 .side-menu li button {
   padding-left: 0;
@@ -87,7 +93,6 @@ nav.side-menu > ul:last-child {
 /* Submenu Styling */
 .sub-menu {
   list-style: none;
-  padding-left: 1em;
 }
 
 /* Overlay background */
