@@ -16,35 +16,31 @@ const LoginPage = () => {
   };
 
   return (
-    <form
-      className="login-form"
-      onSubmit={submitHandler}
-      noValidate
-    >
+    <form className="login-form" onSubmit={submitHandler} noValidate>
       <fieldset>
         <legend>Login</legend>
         <ul>
-      <li>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formValue["email"]}
-          onChange={handleFormValueChanged}
-        />
-        </li>
-        <li>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password-"
-          name="password"
-          value={formValue["password"]}
-          onChange={handleFormValueChanged}
-        />
-        </li>
-      </ul>
+          <li>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formValue["email"]}
+              onChange={handleFormValueChanged}
+            />
+          </li>
+          <li>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password-"
+              name="password"
+              value={formValue["password"]}
+              onChange={handleFormValueChanged}
+            />
+          </li>
+        </ul>
       </fieldset>
       <div>
         <button>Cancel</button>

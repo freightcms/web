@@ -1,3 +1,7 @@
+@import "./header.css";
+@import "./footer.css";
+@import "./forms.css";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,12 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  height: 10%;
-  nav {
-    border-right: 1px solid black;
-  }
-}
+
 
 header, footer {
   width: 100%;
@@ -35,26 +34,6 @@ main {
   height: calc(80% - 67px);
   overflow-y: scroll;
   position: fixed;
-}
-
-footer {
-  overflow-y: visible;
-  position: fixed;
-  margin-top: auto;
-  bottom: 0;
-  height: 20%;
-
-  nav {
-    padding-left: 256px;
-
-    h1, h2, h3, h4, h5 {
-      color: #fff;
-    }
-  }
-
-  ul {
-    padding-left: 0;
-  }
 }
 
 code {

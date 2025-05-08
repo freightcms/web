@@ -58,4 +58,22 @@ form {
     font-size: large;
     padding: 4px 8px 4px 8px;
   }
+
+  .login-form {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  fieldset {
+    padding: 2vh 4vh 2vh 4vh;
+
+    ul {
+      width: 100%;
+      font-size: larger;
+    }
+  }
+}
 }
