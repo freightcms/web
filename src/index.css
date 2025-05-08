@@ -7,8 +7,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+footer {
+  position: fixed;
+  margin-top: auto;
+  bottom: 0;
+
+  nav {
+    padding-left: 256px;
+
+    h1, h2, h3, h4, h5 {
+      color: #fff;
+    }
+  }
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+nav {
+  ul {
+    display: flex;
+    flex-direction: column;
+    column-gap: 8px;
+    list-style: none;
+
+    li {
+      padding-top: 8px;
+
+      a, button {
+        padding-left: 0;
+        color: #507d2a;
+        text-decoration: none;
+        display: inline-block;
+      }
+    }
+  }
 }
 

@@ -33,12 +33,6 @@ nav.side-menu {
   flex-direction: column;
 }
 
-nav.side-menu > ul {
-  display: flex;
-  flex-direction: column;
-  column-gap: 8px;
-}
-
 nav.side-menu > ul:first-of-type {
   padding-top: 60px;
 }
@@ -67,20 +61,8 @@ nav.side-menu > ul:last-child {
   cursor: pointer;
 }
 
-.side-menu ul {
-  list-style: none;
-}
-
-.side-menu ul > li {
-  padding-top: 8px;
-}
-
-.side-menu li a,
-.side-menu li button {
-  padding-left: 0;
-  color: #507d2a;
-  text-decoration: none;
-  display: inline-block;
+.side-menu > ul > li > a,
+.side-menu > ul > li > button {
   font-size: x-large;
 }
 
