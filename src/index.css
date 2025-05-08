@@ -7,15 +7,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+header {
+  height: 67px;
+}
+
+footer {
+  height: 130px;
+  overflow-y: visible;
+}
+
+header, footer {
+  width: 100%;
+  background-color: #333;
+}
+
+center {
+  text-align: center;
+  margin: auto;
+}
+
+inline {
+  display: inline-flex;
+}
+
 main {
-  height: 100%;
+  left: 0;
+  top: 67px;
+  width: 100%;
+  height: calc(80% - 67px);
   overflow-y: scroll;
+  position: fixed;
 }
 
 footer {
   position: fixed;
   margin-top: auto;
   bottom: 0;
+  height: 20%;
 
   nav {
     padding-left: 256px;
@@ -23,6 +51,10 @@ footer {
     h1, h2, h3, h4, h5 {
       color: #fff;
     }
+  }
+
+  ul {
+    padding-left: 0;
   }
 }
 

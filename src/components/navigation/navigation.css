@@ -1,3 +1,8 @@
+header {
+  nav {
+    border-right: 1px solid black;
+  }
+}
 /* Ensure the hamburger is still fixed at the top-left */
 .hamburger {
   font-size: 30px;

@@ -1,3 +1,4 @@
+import "./pages.css";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 const LoginPage = () => {
@@ -16,6 +17,7 @@ const LoginPage = () => {
 
   return (
     <form
+      className="login-form"
       onSubmit={submitHandler}
       noValidate
     >

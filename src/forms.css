@@ -13,6 +13,7 @@ form {
     display: flex;
     flex-direction: row;
     gap: 8px;
+    justify-content: end;
   }
 
   ul {
@@ -43,6 +44,7 @@ form {
 
   label {
     font-size: 14px;
+    text-align: right;
   }
 
   input {
