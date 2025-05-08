@@ -8,12 +8,10 @@ body {
 }
 
 header {
-  height: 67px;
-}
-
-footer {
-  height: 130px;
-  overflow-y: visible;
+  height: 10%;
+  nav {
+    border-right: 1px solid black;
+  }
 }
 
 header, footer {
@@ -40,6 +38,7 @@ main {
 }
 
 footer {
+  overflow-y: visible;
   position: fixed;
   margin-top: auto;
   bottom: 0;
