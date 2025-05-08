@@ -1,6 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import { FormEvent, FormEventHandler, useState } from "react";
-import "../../forms.css";
+import { FormEvent, useState } from "react";
 
 const CREATE_CARRIER_QL = gql`
   mutation CreateCarrier($name: String!, $dba: String!) {
@@ -43,7 +42,7 @@ const CreateCarrierPage = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="input-group-inline">
+      <div>
         <label htmlFor="name">Name</label>
         <input
           name="name"
@@ -57,7 +56,7 @@ const CreateCarrierPage = () => {
           }
         />
       </div>
-      <div className="input-group-inline">
+      <div>
         <label title="doing business as" htmlFor="dba">
           DBA
         </label>

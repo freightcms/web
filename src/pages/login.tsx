@@ -16,13 +16,13 @@ const LoginPage = () => {
 
   return (
     <form
-      role="form"
-      className="form center"
       onSubmit={submitHandler}
       noValidate
     >
       <fieldset>
         <legend>Login</legend>
+        <ul>
+      <li>
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -31,6 +31,8 @@ const LoginPage = () => {
           value={formValue["email"]}
           onChange={handleFormValueChanged}
         />
+        </li>
+        <li>
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -39,8 +41,10 @@ const LoginPage = () => {
           value={formValue["password"]}
           onChange={handleFormValueChanged}
         />
+        </li>
+      </ul>
       </fieldset>
-      <div className="button-group">
+      <div>
         <button>Cancel</button>
         <button type="submit">Login</button>
       </div>

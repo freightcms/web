@@ -1,12 +1,52 @@
-form input {
-  border-color: #507d2a;
-  border-radius: 0.33vh;
-}
+/* begin form css */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-form .inline {
-  display: inline-flex;
-}
+  div:last-child {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
 
-form .inline > label {
-  margin-right: 0.25vh;
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+
+      label {
+        min-width: 80px;
+      }
+    }
+
+    li:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+
+  fieldset {
+    display: grid;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input {
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: large;
+  }
+
+  button, input[type="submit"], input[type="button"] {
+    border: none;
+    font-size: large;
+  }
 }
