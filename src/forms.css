@@ -16,30 +16,32 @@ form {
     justify-content: end;
   }
 
-  ul {
-    list-style: none;
-    padding-left: 0;
+  fieldset {
+    border-radius: 8px;
 
-    li {
-      display: flex;
-      flex-direction: row;
-      gap: 8px;
+    ul {
+      list-style: none;
+      padding-left: 0;
 
-      label {
-        min-width: 80px;
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+
+        label {
+          min-width: 80px;
+        }
+
+        input {
+          flex-grow: 1;
+        }
+
+        label, input {
+          font-size: larger;
+        }
       }
     }
-
-    li:not(:first-child) {
-      margin-top: 8px;
-    }
-  }
-
-  fieldset {
-    display: grid;
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-    border-radius: 8px;
   }
 
   label {
