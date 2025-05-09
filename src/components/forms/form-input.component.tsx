@@ -6,7 +6,7 @@ const FormInput = (config: FormInputFieldConfig & {onChange: HTMLAttributes<HTML
   const [translation, i18, ready] = useTranslation();
 
   return (<>
-      <label htmlFor={config.inputName} id={`${config.id}-label`}>{translation(config.label)}</label>
+      <label htmlFor={config.id} id={`${config.id}-label`}>{translation(config.label)}</label>
       <input id={config.id} name={config.inputName} value={config.initialValue} type={config.inputType} onChange={config.onChange} />
   </>)
 };
