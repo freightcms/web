@@ -36,16 +36,11 @@ form {
         input {
           flex-grow: 1;
         }
-
-        label, input {
-          font-size: larger;
-        }
       }
     }
   }
 
   label {
-    font-size: 14px;
     text-align: right;
   }
 
@@ -53,6 +48,10 @@ form {
     border: 1px solid black;
     border-radius: 4px;
     font-size: large;
+  }
+
+  label, input {
+    font-size: larger;
   }
 
   button,
