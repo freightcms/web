@@ -1,8 +1,8 @@
 import { HTMLAttributes, HTMLInputTypeAttribute } from "react";
 
-export interface FormFieldConfig {
+export interface FormFieldConfigBase {
   id: HTMLAttributes<HTMLElement>["id"];
-  title: HTMLAttributes<HTMLElement>["title"];
+  title?: HTMLAttributes<HTMLElement>["title"];
   configType: "collection" | "input";
 }
 
@@ -10,7 +10,7 @@ export interface FormFieldConfig {
  * Represents a configuration for when users whant to use a form with just an
  * input and label
  */
-export interface FormInputFieldConfig extends FormFieldConfig {
+export interface FormInputFieldConfig extends FormFieldConfigBase {
   /**
    * Label should be the translation string that will be used in the
    * useTranslation web hook
@@ -40,6 +40,8 @@ export interface FormInputFieldConfig extends FormFieldConfig {
    */
   initialValue?: HTMLInputElement["value"];
 }
+
+export type FormFieldConfig = FormInputFieldConfig;
 
 export function isInputConfig(
   config: FormFieldConfig,

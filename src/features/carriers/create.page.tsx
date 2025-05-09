@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import { FormEvent, useState } from "react";
-import { Form } from "../../components/forms";
+import { DisplayApolloError, LoadingSpinner, Form, FormFieldConfig } from "../../components";
 import { useForm } from "../../hooks";
 
 const CREATE_CARRIER_QL = gql`
@@ -11,26 +11,30 @@ const CREATE_CARRIER_QL = gql`
   }
 `;
 
+const configs: Array<FormFieldConfig> = [{
+  label: "forms.carriers.new.name.label",
+  id: "carrier-name",
+  inputName: "name",
+  configType: "input",
+  inputType: "text",
+  title: undefined,
+}]
+
 const CreateCarrierPage = () => {
-  const [formValue, setFormValue] = useState({
-    name: undefined,
-    dba: undefined,
-    isActive: false,
-  });
-
   const {} = useMutation(CREATE_CARRIER_QL, {
-    variables: {
-      name: formValue.name,
-      dba: formValue.dba,
-      isActive: formValue.isActive,
-    },
+    variables: {},
   });
 
-  const {loading, error, data} = useForm("Carriers.Create");
+ // const {loading, error, data} = useForm("Carriers.Create");
 
-  console.debug("data", data);
+ // if (error) {
+ //   return <DisplayApolloError {...error} />
+ // }
+ // if (loading) {
+ //   return (<LoadingSpinner />);
+ // }
 
-  return <Form label="forms.carriers.new.title" configs={[]} onSubmit={(value) => {
+  return <Form label="forms.carriers.new.title" configs={configs} onSubmit={(value) => {
     console.debug(value);
   }}/>
 };
