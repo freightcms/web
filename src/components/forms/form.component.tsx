@@ -9,7 +9,6 @@ export interface FormProps {
    */
   label: string;
   configs: Array<FormFieldConfig>;
-
   onSubmit(formValue: Record<string, any>): void;
 }
 
