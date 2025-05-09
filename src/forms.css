@@ -55,7 +55,9 @@ form {
     font-size: large;
   }
 
-  button, input[type="submit"], input[type="button"] {
+  button,
+  input[type="submit"],
+  input[type="button"] {
     border: none;
     font-size: large;
     padding: 4px 8px 4px 8px;
